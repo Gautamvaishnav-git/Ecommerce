@@ -1,34 +1,29 @@
 import ecommerceVector from "../assets/ecommerceVector.png";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import IForm from "../interfaces/form";
 import axios from "axios";
 
-const SignUp = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [formData, updateFormData] = useReducer(
     (prev: IForm, next: IForm) => {
       return { ...prev, ...next };
     },
-    { name: "", email: "", password: "" }
+    { email: "", password: "" }
   );
+
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
-    let baseUri: string = import.meta.env.VITE_API_BASE_URI;
-    const { data } = await axios.post(`${baseUri}/user/signup`, {
+    let baseUri = import.meta.env.VITE_API_BASE_URI;
+    const { data } = await axios.post(`${baseUri}/user/login`, {
       ...formData,
     });
-    if (data.token) {
-      document.cookie = "token=" + data.token + ";";
-    }
+    document.cookie = "token=" + data.token + ";";
+    updateFormData({ email: "", password: "" });
     let token = document.cookie.split(";")[0].split("=")[1];
     if (token) navigate("/");
-    updateFormData({ name: "", email: "", password: "" });
   };
-
-  //   useEffect(() => {
-
-  //   }, []);
 
   return (
     <form className="text-gray-600 body-font" onSubmit={handleSubmit}>
@@ -38,27 +33,9 @@ const SignUp = () => {
         </div>
         <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
           <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
-            Sign Up
+            Log In
           </h2>
-          <div className="relative mb-4">
-            <label htmlFor="name" className="leading-7 text-sm text-gray-600">
-              User Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              onChange={(e) =>
-                updateFormData({
-                  ...formData,
-                  name: e.target.value,
-                })
-              }
-              required
-              value={formData.name}
-              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
-          </div>
+
           <div className="relative mb-4">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
               Email
@@ -98,13 +75,13 @@ const SignUp = () => {
             className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             type="submit"
           >
-            Sign up
+            Login
           </button>
           <p className="text-sm text-gray-500 mt-3">
             Already have an account
-            <Link to="/login" className="text-indigo-500 hover:underline">
+            <Link to="/signup" className="text-indigo-500 hover:underline">
               {" "}
-              login
+              Sign Up
             </Link>
           </p>
         </div>
@@ -112,5 +89,4 @@ const SignUp = () => {
     </form>
   );
 };
-
-export default SignUp;
+export default Login;
