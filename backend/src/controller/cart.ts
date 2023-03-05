@@ -25,4 +25,11 @@ const handleAddProduct = async (req: Request, resp: Response) => {
   }
 };
 
-export { handleAddProduct };
+const handleFetchCart = async (req: Request, resp: Response) => {
+  const token = req.body.token;
+  const { userID } = getUser(token);
+  const cartData = await cart.find({ userID });
+  return resp.json(cartData);
+};
+
+export { handleAddProduct, handleFetchCart };
