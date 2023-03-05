@@ -13,8 +13,7 @@ frontend/.env
 /coverage
 
 # production
-backend/dist
-frontend/dist
+*/dist
 
 # misc
 .DS_Store

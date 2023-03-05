@@ -4,6 +4,7 @@ import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
 import { connectToMongoDB } from "./connection";
 import * as dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const app = express();
 const port = 5000;
 
 app.use(express.json());
+app.use(cors());
 app.use("/user", userRouter);
 app.use("/store", storeRouter);
 app.use("/cart", cartRouter);

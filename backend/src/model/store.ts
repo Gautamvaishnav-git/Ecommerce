@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IProduct {
   position: {
@@ -29,7 +29,7 @@ export interface IProduct {
   thumbnail: string;
 }
 
-const productSchema = new mongoose.Schema<IProduct>(
+const productSchema = new Schema<IProduct>(
   {
     position: {
       page: Number,
@@ -61,6 +61,6 @@ const productSchema = new mongoose.Schema<IProduct>(
   { collection: "Store" }
 );
 
-const Store = mongoose.model("Store", productSchema);
+const Store = model("Store", productSchema);
 
 export default Store;

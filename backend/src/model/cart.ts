@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 import { IProduct } from "./store";
 
 export interface productSchemaType extends IProduct {
@@ -6,7 +6,7 @@ export interface productSchemaType extends IProduct {
   quantity: number;
 }
 
-const productSchema = new mongoose.Schema<productSchemaType>(
+const productSchema = new Schema<productSchemaType>(
   {
     userID: String,
     quantity: {
@@ -43,6 +43,6 @@ const productSchema = new mongoose.Schema<productSchemaType>(
   { collection: "userCart" }
 );
 
-const cart = mongoose.model("userCart", productSchema);
+const cart = model("userCart", productSchema);
 
 export default cart;
