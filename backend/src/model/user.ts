@@ -1,4 +1,4 @@
-import { Schema, Model, model } from "mongoose";
+import mongoose, { Schema, Model, model } from "mongoose";
 import { createHmac, randomBytes } from "crypto";
 
 interface IUser {
@@ -6,10 +6,13 @@ interface IUser {
   email: string;
   password: string;
   salt: string;
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
+  _id: mongoose.Types.ObjectId
 }
 
 interface IUserModel extends Model<IUser> {
-  matchPassword: (email: string, password: string) => boolean;
+  matchPassword: (email: string, password: string) => IUser;
 }
 
 const userSchema = new Schema<IUser, IUserModel>(
@@ -39,7 +42,7 @@ userSchema.pre("save", function (next) {
 
 userSchema.static(
   "matchPassword",
-  async function matchPassword(email, password) {
+  async function matchPassword(email, password): Promise<IUser | boolean> {
     const user = await this.findOne({ email });
     if (!user) return false;
     const salt = user.salt;
