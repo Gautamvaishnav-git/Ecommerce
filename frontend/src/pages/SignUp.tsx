@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useReducer } from "react";
 import IForm from "../interfaces/form";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -19,19 +21,17 @@ const SignUp = () => {
       ...formData,
     });
     if (data.token) {
-      document.cookie = "token=" + data.token + ";";
+      sessionStorage.setItem("token", data.token);
+      updateFormData({ name: "", email: "", password: "" });
+      navigate("/");
+    } else {
+      toast.error(data.invalid);
     }
-    let token = document.cookie.split(";")[0].split("=")[1];
-    if (token) navigate("/");
-    updateFormData({ name: "", email: "", password: "" });
   };
-
-  //   useEffect(() => {
-
-  //   }, []);
 
   return (
     <form className="text-gray-600 body-font" onSubmit={handleSubmit}>
+      <ToastContainer position="top-left" />
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
           <img src={ecommerceVector} alt="ecommerce image" className="w-full" />
@@ -102,7 +102,7 @@ const SignUp = () => {
           </button>
           <p className="text-sm text-gray-500 mt-3">
             Already have an account
-            <Link to="/login" className="text-indigo-500 hover:underline">
+            <Link to="/user/login" className="text-indigo-500 hover:underline">
               {" "}
               login
             </Link>

@@ -5,7 +5,7 @@ const Card = () => {
   return (
     <Link
       to="/"
-      className="mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg"
+      className="mx-auto mt-11 w-full sm:w-1/3 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg inline-block"
     >
       <img
         className="h-48 w-full object-cover object-center"

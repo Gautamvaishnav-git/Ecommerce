@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useReducer } from "react";
 import IForm from "../interfaces/form";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,18 +17,28 @@ const Login = () => {
 
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
-    let baseUri = import.meta.env.VITE_API_BASE_URI;
-    const { data } = await axios.post(`${baseUri}/user/login`, {
-      ...formData,
-    });
-    document.cookie = "token=" + data.token + ";";
-    updateFormData({ email: "", password: "" });
-    let token = document.cookie.split(";")[0].split("=")[1];
-    if (token) navigate("/");
+    try {
+      let baseUri = import.meta.env.VITE_API_BASE_URI;
+      const { data } = await axios.post(`${baseUri}/user/login`, {
+        ...formData,
+      });
+      if (data.token) {
+        sessionStorage.setItem("token", data.token);
+        updateFormData({ email: "", password: "" });
+        toast.success("you logged in successfully");
+        navigate("/");
+      } else {
+        toast.error(data.invalid);
+        navigate("/user/login");
+      }
+    } catch (error) {
+      toast.error("some error found");
+    }
   };
 
   return (
     <form className="text-gray-600 body-font" onSubmit={handleSubmit}>
+      <ToastContainer position="top-left" />
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
           <img src={ecommerceVector} alt="ecommerce image" className="w-full" />
@@ -79,7 +91,7 @@ const Login = () => {
           </button>
           <p className="text-sm text-gray-500 mt-3">
             Already have an account
-            <Link to="/signup" className="text-indigo-500 hover:underline">
+            <Link to="/user/signup" className="text-indigo-500 hover:underline">
               {" "}
               Sign Up
             </Link>
