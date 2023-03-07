@@ -13,14 +13,16 @@ import { useState, useEffect } from "react";
 import PageNotFound from "./pages/PageNotFound";
 import Cart from "./pages/Cart";
 import PrivateComponent from "./components/PrivateComponent";
+import Product from "./pages/Product";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route element={<PrivateComponent />}>
-          <Route path="/*" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:asin" element={<Product />} />
         </Route>
         <Route path="/user">
           <Route path="signup" element={<SignUp />} />

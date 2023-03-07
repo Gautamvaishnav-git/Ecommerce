@@ -7,16 +7,13 @@ const Home = () => {
   const baseUri = import.meta.env.VITE_API_BASE_URI;
   const storeUri = `${baseUri}/store`;
   const { response } = useFetch<IProduct[]>({ url: storeUri });
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
 
   return (
     <>
-      <div className="text-xl text-blue-500 w-full font-bold p-3">
+      <div className="flex gap-3 flex-wrap px-2 w-full max-w-7xl mx-auto">
         {response &&
           response.map((product) => {
-            return <Card />;
+            return <Card product={product} key={product.asin} />;
           })}
       </div>
     </>
