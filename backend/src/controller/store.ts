@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 
 const handleProducts = async (req: Request, resp: Response) => {
   const products = await Store.find({});
-  // console.log(products);
   return resp.json(products);
 };
 

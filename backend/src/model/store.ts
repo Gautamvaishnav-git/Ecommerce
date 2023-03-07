@@ -61,6 +61,6 @@ const productSchema = new Schema<IProduct>(
   { collection: "Store" }
 );
 
-const Store = model("Store", productSchema);
+const StoreModel = model<IProduct>("Store", productSchema);
 
-export default Store;
+export default StoreModel;

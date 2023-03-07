@@ -1,12 +1,12 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import userRouter from "./routes/user";
 import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
 import { connectToMongoDB } from "./connection";
-import * as dotenv from "dotenv";
 import cors from "cors";
-
-dotenv.config();
 
 const ecommerceURL = "mongodb://127.0.0.1:27017/Ecommerce";
 

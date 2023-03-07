@@ -6,9 +6,9 @@ interface IUser {
   email: string;
   password: string;
   salt: string;
-  createdAt?: string | Date;
-  updatedAt?: string | Date;
-  _id: mongoose.Types.ObjectId
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  _id?: mongoose.Types.ObjectId;
 }
 
 interface IUserModel extends Model<IUser> {
@@ -34,7 +34,6 @@ userSchema.pre("save", function (next) {
   const hashedPassword = createHmac("sha256", salt)
     .update(userPassword)
     .digest("hex");
-  console.log(hashedPassword);
   this.salt = salt;
   this.password = hashedPassword;
   next();
