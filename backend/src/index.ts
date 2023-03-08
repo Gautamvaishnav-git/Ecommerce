@@ -7,6 +7,7 @@ import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
 import { connectToMongoDB } from "./connection";
 import cors from "cors";
+import { authentication } from "./middleware/authentication";
 
 const ecommerceURL = "mongodb://127.0.0.1:27017/Ecommerce";
 
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/user", userRouter);
 app.use("/store", storeRouter);
-app.use("/cart", cartRouter);
+app.use("/cart", authentication, cartRouter);
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
