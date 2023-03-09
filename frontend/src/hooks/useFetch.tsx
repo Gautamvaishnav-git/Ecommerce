@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 const useFetch = <T,>({ url, params }: { url: string; params?: object }) => {
   const [response, setResponse] = useState<T | null>();
   const [loading, setLoading] = useState<boolean>(true);
   const [fetchErr, setFetchErr] = useState<boolean>(false);
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const { data } = await axios.get(url, { params: params });
       setResponse(data);
@@ -15,7 +15,7 @@ const useFetch = <T,>({ url, params }: { url: string; params?: object }) => {
       setLoading(false);
       setFetchErr(true);
     }
-  };
+  }, [response]);
   useEffect(() => {
     fetchData();
   }, []);

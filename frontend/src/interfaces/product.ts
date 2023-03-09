@@ -1,9 +1,4 @@
 interface IProduct {
-  position: {
-    page: number;
-    position: number;
-    global_position: number;
-  };
   asin: string;
   price: {
     discounted: boolean;
@@ -17,14 +12,8 @@ interface IProduct {
     total_reviews: number;
     rating: number;
   };
-  url: string;
-  score: string;
-  sponsored: boolean;
-  amazonChoice: boolean;
-  bestSeller: boolean;
-  amazonPrime: boolean;
   title: string;
-  thumbnail: string;
+  main_image: string;
 }
 
 export default IProduct;

@@ -1,6 +1,4 @@
-interface ProductDetail {
-  result: Detail[];
-}
+type ProductDetail  = Detail
 
 export interface Detail {
   title: string;
