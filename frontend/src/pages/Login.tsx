@@ -20,7 +20,7 @@ const Login = () => {
     try {
       let baseUri = import.meta.env.VITE_API_BASE_URI;
       const { data } = await axios.post(`${baseUri}/user/login`, {
-        ...formData,
+        data: formData,
       });
       if (data.token) {
         sessionStorage.setItem("token", data.token);
@@ -32,6 +32,7 @@ const Login = () => {
         navigate("/user/login");
       }
     } catch (error) {
+      console.log(error);
       toast.error("some error found");
     }
   };

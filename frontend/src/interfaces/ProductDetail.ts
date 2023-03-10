@@ -1,5 +1,3 @@
-type ProductDetail  = Detail
-
 export interface Detail {
   title: string;
   description: string;
@@ -73,9 +71,7 @@ interface IVariants {
       thumb: string;
       hiRes: string;
       variant: string;
-      main: {
-        [k: string]: string[];
-      };
+      main: { [k: string]: string };
     }
   ];
   title: string;
@@ -83,5 +79,3 @@ interface IVariants {
   is_current_product: boolean;
   price: string;
 }
-
-export default ProductDetail;

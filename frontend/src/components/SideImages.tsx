@@ -1,6 +1,9 @@
-import { useState } from "react";
-const SideImages = ({ main_image, images }: PropType) => {
+import { useState, SyntheticEvent } from "react";
+import { Detail } from "../interfaces/ProductDetail";
+const SideImages = (props: Detail) => {
+  const { main_image, images, variants } = props;
   const [productImage, setProductImage] = useState(main_image);
+
   return (
     <>
       <div className="w-full flex flex-row-reverse">
@@ -26,8 +29,3 @@ const SideImages = ({ main_image, images }: PropType) => {
 };
 
 export default SideImages;
-
-type PropType = {
-  main_image: string;
-  images: string[];
-};

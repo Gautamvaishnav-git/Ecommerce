@@ -7,7 +7,12 @@ const useFetch = <T,>({ url, params }: { url: string; params?: object }) => {
   const [fetchErr, setFetchErr] = useState<boolean>(false);
   const fetchData = useCallback(async () => {
     try {
-      const { data } = await axios.get(url, { params: params });
+      const { data } = await axios.get(url, {
+        params: params,
+        headers: {
+          authorization: sessionStorage.getItem("token"),
+        },
+      });
       setResponse(data);
       setLoading(false);
     } catch (error) {
