@@ -1,8 +1,10 @@
 import { model } from "mongoose";
-import { detailSchema, productSchema } from "../schemas/detail";
+import detailSchema from "../schemas/detail";
+import productSchema from "../schemas/store";
+import { IProduct , Detail} from "../interfaces/detail";
 
-const StoreModel = model("Store", productSchema);
+const StoreModel = model<IProduct>("Store", productSchema);
 
-export const DetailModel = model("productDetail", detailSchema);
+export const DetailModel = model<Detail>("productDetail", detailSchema);
 
 export default StoreModel;

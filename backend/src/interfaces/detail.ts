@@ -1,7 +1,3 @@
-interface ProductDetail {
-  result: Detail[];
-}
-
 export interface Detail {
   title: string;
   description: string;
@@ -85,8 +81,6 @@ export interface IVariants {
   is_current_product: boolean;
   price: string;
 }
-
-export default ProductDetail;
 
 export interface IProduct {
   asin: string;

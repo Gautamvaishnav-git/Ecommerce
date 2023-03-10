@@ -1,9 +1,8 @@
-import Store, { DetailModel } from "../model/store";
+import StoreModel, { DetailModel } from "../model/store";
 import { Request, Response } from "express";
-// import ProductDetail from "../interfaces/detail";
 
 const handleProducts = async (req: Request, resp: Response) => {
-  const products = await Store.find({});
+  const products = await StoreModel.find({});
   return resp.json(products);
 };
 

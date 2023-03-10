@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IProduct } from "./store";
+import { IProduct } from "../interfaces/detail";
 
 export interface productSchemaType extends IProduct {
   userID: string;
@@ -8,37 +8,28 @@ export interface productSchemaType extends IProduct {
 
 const productSchema = new Schema<productSchemaType>(
   {
-    userID: String,
-    quantity: {
-      type: Number,
-      default: 1,
-    },
-    position: {
-      page: Number,
-      position: Number,
-      global_position: Number,
-    },
     asin: String,
-    price: {
-      discounted: Boolean,
-      current_price: Number,
-      currency: String,
-      before_price: Number,
-      savings_amount: Number,
-      savings_percent: Number,
-    },
+    main_image: String,
+    price: [
+      {
+        discounted: Boolean,
+        current_price: Number,
+        currency: String,
+        before_price: Number,
+        savings_amount: Number,
+        savings_percent: Number,
+      },
+    ],
     reviews: {
       total_reviews: Number,
       rating: Number,
     },
-    url: String,
-    score: String,
-    sponsored: Boolean,
-    amazonChoice: Boolean,
-    bestSeller: Boolean,
-    amazonPrime: Boolean,
     title: String,
-    thumbnail: String,
+    quantity: {
+      type: Number,
+      default: 1,
+    },
+    userID: Schema.Types.ObjectId,
   },
   { collection: "userCart" }
 );

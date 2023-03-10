@@ -1,26 +1,5 @@
 import { Schema } from "mongoose";
-import { Detail, IProduct } from "../interfaces/detail";
-
-const productSchema = new Schema<IProduct>(
-  {
-    asin: String,
-    price: {
-      discounted: Boolean,
-      current_price: Number,
-      currency: String,
-      before_price: Number,
-      savings_amount: Number,
-      savings_percent: Number,
-    },
-    reviews: {
-      total_reviews: Number,
-      rating: Number,
-    },
-    title: String,
-    main_image: String,
-  },
-  { collection: "Store" }
-);
+import { Detail } from "../interfaces/detail";
 
 const detailSchema = new Schema<Detail>(
   {
@@ -115,4 +94,4 @@ const detailSchema = new Schema<Detail>(
   { collection: "productDetail" }
 );
 
-export { productSchema, detailSchema };
+export default detailSchema;
