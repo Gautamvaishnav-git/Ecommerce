@@ -1,6 +1,6 @@
 import ecommerceVector from "../assets/ecommerceVector.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import IForm from "../interfaces/form";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const [formData, updateFormData] = useReducer(
     (prev: IForm, next: IForm) => {
       return { ...prev, ...next };
@@ -18,10 +19,12 @@ const Login = () => {
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     try {
+      setLoading(true);
       let baseUri = import.meta.env.VITE_API_BASE_URI;
       const { data } = await axios.post(`${baseUri}/user/login`, {
         data: formData,
       });
+      setLoading(false);
       if (data.token) {
         sessionStorage.setItem("token", data.token);
         updateFormData({ email: "", password: "" });
@@ -32,8 +35,8 @@ const Login = () => {
         navigate("/user/login");
       }
     } catch (error) {
-      console.log(error);
-      toast.error("some error found");
+      setLoading(false);
+      toast.error("server not respond!");
     }
   };
 
@@ -45,7 +48,7 @@ const Login = () => {
           <img src={ecommerceVector} alt="ecommerce image" className="w-full" />
         </div>
         <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-          <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
+          <h2 className="text-gray-900 text-xl font-semibold title-font mb-5">
             Log In
           </h2>
 
@@ -88,7 +91,7 @@ const Login = () => {
             className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             type="submit"
           >
-            Login
+            {loading ? "Logging..." : "Login"}
           </button>
           <p className="text-sm text-gray-500 mt-3">
             Already have an account
