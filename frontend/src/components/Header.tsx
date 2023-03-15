@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,24 +28,23 @@ const Header = () => {
             </svg>
             <span className="ml-3 text-xl">Free Zone</span>
           </Link>
-          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <Link to="/" className="mr-5 hover:text-gray-900">
+          <nav
+            className="md:ml-auto flex flex-wrap items-center text-base justify-center"
+            id="navBar"
+          >
+            <NavLink to="/" className="mr-5 hover:text-gray-900">
               Home
-            </Link>
-            <Link to="/" className="mr-5 hover:text-gray-900">
-              Deals
-            </Link>
-
-            <button className="mr-5 hover:text-gray-900" onClick={handleLogout}>
-              Log out
-            </button>
+            </NavLink>
+            <NavLink to="/cart" className="mr-5 hover:text-gray-900">
+              Cart
+            </NavLink>
           </nav>
 
-          <Link
-            to="/cart"
-            className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+          <button
+            onClick={handleLogout}
+            className="inline-flex items-center bg-red-500 border-0 py-1 px-3 focus:outline-none hover:bg-red-600 text-white rounded text-base mt-4 md:mt-0"
           >
-            Cart
+            Logout
             <svg
               fill="none"
               stroke="currentColor"
@@ -57,7 +56,7 @@ const Header = () => {
             >
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
-          </Link>
+          </button>
         </div>
       </header>
     </>

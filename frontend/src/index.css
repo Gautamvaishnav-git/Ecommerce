@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.rotateLoader {
-  animation: rotateLoader 2s linear infinite;
-}
-
-@keyframes rotateLoader {
-  from {
-    rotate: 0deg;
+@layer components {
+  .rotateLoader {
+    animation: rotateLoader 2s linear infinite;
   }
-  to {
-    rotate: 360deg;
+
+  @keyframes rotateLoader {
+    from {
+      rotate: 0deg;
+    }
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  #navBar a.active {
+    color: theme("colors.purple.600") !important;
   }
 }

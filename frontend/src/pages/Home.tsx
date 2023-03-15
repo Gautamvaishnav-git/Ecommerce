@@ -1,16 +1,22 @@
 import Card from "../components/Card";
 import useFetch from "../hooks/useFetch";
-import { useEffect } from "react";
 import IProduct from "../interfaces/product";
+import Loader from "../components/Loader";
+import CardLoadingSkelton from "../components/CardLoadingSkelton";
 
 const Home = () => {
   const baseUri = import.meta.env.VITE_API_BASE_URI;
   const storeUri = `${baseUri}/store`;
-  const { response } = useFetch<IProduct[]>({ url: storeUri });
+  const { response, loading, fetchErr } = useFetch<IProduct[]>({
+    url: storeUri,
+  });
+
+  if (fetchErr) return <p>Fetch Error occur</p>;
 
   return (
     <>
-      <div className="flex gap-3 flex-wrap px-2 w-full max-w-7xl mx-auto">
+      {loading && <CardLoadingSkelton />}
+      <div className="flex gap-3 flex-wrap px-2 py-4 w-full max-w-7xl mx-auto">
         {response &&
           response.map((product) => {
             return <Card product={product} key={product.asin} />;

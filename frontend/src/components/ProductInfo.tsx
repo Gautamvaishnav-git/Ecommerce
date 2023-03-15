@@ -1,13 +1,23 @@
 import { Rating } from "react-simple-star-rating";
+import { SyntheticEvent } from "react";
 import { Detail } from "../interfaces/ProductDetail";
 
 const ProductInfo = (props: ProductInfoType) => {
-  const { title, description, reviews, price, categories } = props;
+  const { title, description, reviews, price, categories, feature_bullets } =
+    props;
   return (
     <>
       <div className="w-full">
         <h2 className="text-xl font-medium text-indigo-500 pb-2">{title}</h2>
-        <p>{description}</p>
+        <p
+          className="cursor-pointer relative before:absolute before:w-full before:h-full before:bg-gradient-to-t before:from-white"
+          onClick={(e) => {
+            const target = e.target as HTMLParagraphElement;
+            target.innerText = description;
+          }}
+        >
+          {description.slice(0, 150)}...
+        </p>
         <div className="flex pt-2 gap-2 items-center">
           <p>{reviews.rating}</p>
           <Rating
@@ -48,7 +58,7 @@ const ProductInfo = (props: ProductInfoType) => {
                     key={category.url}
                     href={category.url}
                     target="blank"
-                    className="bg-indigo-100 py-1 px-2 rounded"
+                    className="bg-indigo-100 py-1 text-sm px-2 rounded"
                   >
                     {category.category}
                   </a>
@@ -58,6 +68,7 @@ const ProductInfo = (props: ProductInfoType) => {
           </div>
         </div>
       </div>
+      <div>feature_bullets</div>
     </>
   );
 };
