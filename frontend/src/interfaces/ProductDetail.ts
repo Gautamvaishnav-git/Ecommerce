@@ -6,6 +6,7 @@ export interface Detail {
   categories: {
     category: string;
     url: string;
+    _id: string;
   }[];
   asin: string;
   url: string;
