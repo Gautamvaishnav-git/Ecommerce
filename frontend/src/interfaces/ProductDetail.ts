@@ -1,4 +1,4 @@
-export interface Detail {
+export default interface Detail {
   title: string;
   description: string;
   feature_bullets: string[];

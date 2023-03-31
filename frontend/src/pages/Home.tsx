@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       {loading && <CardLoadingSkelton />}
-      <div className="flex gap-3 flex-wrap px-2 py-4 w-full max-w-7xl mx-auto">
+      <div className="flex gap-3 flex-wrap px-2 py-4 w-full container mx-auto">
         {response &&
           response.map((product) => {
             return <Card product={product} key={product.asin} />;
