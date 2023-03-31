@@ -25,3 +25,6 @@ FreeZone Ecommerce is Ecommerce store where you can buy and sell your products.
 ### Signup Page
 
 <img src="./projectImages/freezoneEcomm3.png" alt="image1" alt="image3" /> <br />
+
+
+<h4>Project in development stage</h4>
