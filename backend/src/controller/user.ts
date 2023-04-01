@@ -1,6 +1,6 @@
 import user from "../model/user";
 import { Request, Response } from "express";
-import { createUserToken} from "../service/auth";
+import { createUserToken } from "../service/auth";
 
 const handleUserSignup = async (req: Request, resp: Response) => {
   const isExists = await user.findOne({
@@ -21,15 +21,22 @@ const handleUserSignup = async (req: Request, resp: Response) => {
 
 const handleUserLogin = async (req: Request, resp: Response) => {
   try {
-    const userDetail = user.matchPassword(req.body.email, req.body.password);
-    const token = createUserToken({
-      name: userDetail.name,
-      email: userDetail.email,
-      createdAt: userDetail.createdAt,
-      updatedAt: userDetail.updatedAt,
-      userID: userDetail._id,
-    });
-    return resp.json({ token });
+    const userDetail = await user.matchPassword(
+      req.body.email,
+      req.body.password
+    );
+    if (userDetail) {
+      const token = createUserToken({
+        name: userDetail.name,
+        email: userDetail.email,
+        createdAt: userDetail.createdAt,
+        updatedAt: userDetail.updatedAt,
+        userID: userDetail._id,
+      });
+      return resp.json({ token });
+    } else {
+      return resp.json({ invalid: "incorrect username or password" });
+    }
   } catch (error) {
     return resp.json({ invalid: "incorrect username or password" });
   }

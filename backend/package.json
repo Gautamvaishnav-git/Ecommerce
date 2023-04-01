@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon dist/app.js",
+    "dev-start": "nodemon dist/app.js",
+    "start": "node dist/app.js",
     "dev": "tsc -w",
     "lint": "eslint . --ext .ts"
   },
