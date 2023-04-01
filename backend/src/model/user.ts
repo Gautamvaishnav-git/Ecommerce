@@ -1,7 +1,7 @@
 import mongoose, { Schema, Model, model } from "mongoose";
 import { createHmac, randomBytes } from "crypto";
 
-interface IUser {
+export interface IUser {
   name: string;
   email: string;
   password: string;

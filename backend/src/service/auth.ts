@@ -7,9 +7,4 @@ const createUserToken = (payload: object) => {
   return token;
 };
 
-const getUser = (token: string) => {
-  const user = Jwt.verify(token, secret);
-  return user;
-};
-
-export { createUserToken, getUser };
+export { createUserToken };

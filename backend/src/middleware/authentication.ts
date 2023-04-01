@@ -5,15 +5,13 @@ const secret = process.env.ACCESS_TOKEN;
 
 const authentication = (req: Request, resp: Response, next: NextFunction) => {
   const authorizationToken = req.headers.authorization;
-  if (!authorizationToken) {
+  if (!authorizationToken)
     return resp.status(401).json({ tokenErr: "Token not available" });
-  } else {
-    Jwt.verify(authorizationToken, secret, (err, user) => {
-      if (err) return resp.sendStatus(403);
-      req.body.user = user;
-      next();
-    });
-  }
+  Jwt.verify(authorizationToken, secret, (err, user) => {
+    if (err) return resp.sendStatus(403);
+    req.body.user = user;
+    next();
+  });
 };
 
 export { authentication };
