@@ -1,5 +1,5 @@
 import { Rating } from "react-simple-star-rating";
-import { Detail } from "../interfaces/ProductDetail";
+import Detail from "../interfaces/ProductDetail";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 const ProductInfo = (props: ProductInfoType) => {

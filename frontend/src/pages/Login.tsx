@@ -22,9 +22,10 @@ const Login = () => {
       setLoading(true);
       let baseUri = import.meta.env.VITE_API_BASE_URI;
       const { data } = await axios.post(`${baseUri}/user/login`, {
-        data: formData,
+        ...formData,
       });
       setLoading(false);
+      console.log(data);
       if (data.token) {
         sessionStorage.setItem("token", data.token);
         updateFormData({ email: "", password: "" });
