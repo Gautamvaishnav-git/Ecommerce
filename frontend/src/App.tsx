@@ -1,19 +1,12 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import { useState, useEffect } from "react";
 import PageNotFound from "./pages/PageNotFound";
 import Cart from "./pages/Cart";
 import PrivateComponent from "./components/PrivateComponent";
 import Product from "./pages/Product";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (

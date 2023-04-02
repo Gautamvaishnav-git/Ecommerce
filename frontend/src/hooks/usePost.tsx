@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 
-const usePost = ({ url, data }: { url: string; data: object }) => {
-  const [response, setResponse] = useState();
+const usePost = <T,>({ url, data }: { url: string; data: object }) => {
+  const [response, setResponse] = useState<T>();
   const postData = useCallback(async () => {
     const { data: res } = await axios.post(
       url,
@@ -20,10 +20,6 @@ const usePost = ({ url, data }: { url: string; data: object }) => {
     );
     setResponse(res);
   }, [data, url]);
-
-  useEffect(() => {
-    postData();
-  }, []);
 
   return { response, postOnAction };
 };

@@ -3,13 +3,19 @@ import useFetch from "../hooks/useFetch";
 import IProduct from "../interfaces/product";
 import { useEffect } from "react";
 
+export interface cartProductType extends IProduct {
+  quantity: number;
+}
+
 const Cart = () => {
   const baseURI = import.meta.env.VITE_API_BASE_URI;
-  const { response, fetchErr } = useFetch<IProduct[]>({
+  const { response, fetchErr } = useFetch<cartProductType[]>({
     url: `${baseURI}/cart/fetchcart`,
   });
   useEffect(() => {
-    console.log(response);
+    setTimeout(() => {
+      console.log(response);
+    }, 1000);
   }, []);
 
   if (fetchErr) {

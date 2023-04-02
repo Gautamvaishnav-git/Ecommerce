@@ -4,7 +4,6 @@ import { useReducer, useState } from "react";
 import IForm from "../interfaces/form";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,11 +24,9 @@ const Login = () => {
         ...formData,
       });
       setLoading(false);
-      console.log(data);
       if (data.token) {
         sessionStorage.setItem("token", data.token);
         updateFormData({ email: "", password: "" });
-        toast.success("you logged in successfully");
         navigate("/");
       } else {
         toast.error(data.invalid);
