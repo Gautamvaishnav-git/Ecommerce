@@ -31,14 +31,14 @@ const handleUserLogin = async (req: Request, resp: Response) => {
         email: userDetail.email,
         createdAt: userDetail.createdAt,
         updatedAt: userDetail.updatedAt,
-        userID: userDetail._id,
+        userID: userDetail._id, 
       });
       return resp.json({ token });
     } else {
       return resp.json({ invalid: "incorrect username or password" });
     }
   } catch (error) {
-    return resp.json({ invalid: "incorrect username or password" });
+    return resp.status(500).json({ error: error.message });
   }
 };
 

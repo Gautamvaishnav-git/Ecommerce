@@ -21,6 +21,7 @@ const handleAddProduct = async (req: Request, resp: Response) => {
   const product = await StoreModel.findOne({ asin: req.body.asin });
   const { price, asin, title, reviews, main_image } = product;
   const isExists = await cart.findOne({ userID: user.userID, asin });
+  // console.log(isExists);
   if (!isExists) {
     const addProduct = await cart.create({
       userID: user.userID,
