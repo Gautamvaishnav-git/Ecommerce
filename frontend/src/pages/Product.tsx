@@ -25,16 +25,22 @@ const Product: React.FC = () => {
   });
   const addToCart = async () => {
     try {
-      postOnAction().then(async () => {
-        postResponse &&
-          toast.success(`Added ${(await postResponse).title.slice(0, 15)}...`);
-      });
+      postOnAction();
+      postResponse &&
+        toast.promise(postOnAction, {
+          success: `Added ${(await postResponse).title.slice(0, 15)}...`,
+          error: "Error occurred!",
+          pending: "adding...",
+        });
     } catch (error) {
       toast.error("Error occurred");
     }
   };
+
   if (fetchErr)
-    return <p className="text-4xl py-5 w-full text-center">{fetchErr}(</p>;
+    return (
+      <p className="text-4xl py-5 w-full text-center">Fetching error :(</p>
+    );
   return (
     <>
       <ToastContainer />

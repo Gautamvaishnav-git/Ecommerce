@@ -10,12 +10,12 @@ const SideImages = (props: Detail) => {
         <div className="w-4/5 p-4">
           <img src={productImage} alt="image" className="w-full" />
         </div>
-        <div className="flex sm:flex-col overflow-x-auto gap-2 flex-wrap sm:w-1/5 items-center">
+        <div className="flex sm:flex-col overflow-x-auto gap-2 flex-wrap sm:w-1/5 items-stretch">
           {images.map((image, index) => {
             return (
               <div
                 key={index}
-                className="w-fit border p-2 cursor-pointer border-gray-300 hover:border-indigo-600"
+                className="w-ull border p-2 cursor-pointer border-gray-300 hover:border-indigo-600"
                 onClick={() => setProductImage(image)}
               >
                 <img

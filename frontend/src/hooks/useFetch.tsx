@@ -23,7 +23,7 @@ const useFetch = <T,>({ url, params }: { url: string; params?: object }) => {
   }, [response]);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [url]);
 
   return { response, loading, fetchErr };
 };

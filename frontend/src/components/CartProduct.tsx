@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { cartProductType } from "../pages/Cart";
 
-const CartProduct = (props: cartProductType) => {
-  const { title, asin, main_image, price, reviews, quantity } = props;
+interface cartProduct extends cartProductType {
+  deleteProduct: (asin: string) => void;
+}
+
+const CartProduct = (props: cartProduct) => {
+  const { title, asin, main_image, price, reviews, quantity, deleteProduct } =
+    props;
   const numberFormatF = (option: Intl.NumberFormatOptions, num: number) => {
     return new Intl.NumberFormat("en-in", option).format(num);
   };
-
   return (
     <>
       <div className="flex bg-white border border-indigo-500/40 mb-6 sm:mx-2 rounded-md sm:flex-row flex-col py-2 px-3 items-center  gap-4">
@@ -20,7 +24,6 @@ const CartProduct = (props: cartProductType) => {
         </div>
         <div className="flex flex-col gap-2 grow w-full">
           <h3>{title}</h3>
-
           <div className="flex gap-2">
             <Rating
               readonly
@@ -48,8 +51,13 @@ const CartProduct = (props: cartProductType) => {
             >
               View Product
             </Link>
-            <h3 className="bg-indigo-900/10 py-2 px-4 rounded sm:grow-0 grow text-center">{quantity}</h3>
-            <button className="bg-red-500 text-white w-fit px-3 py-2 rounded border border-transparent hover:border-red-500 hover:text-slate-900 hover:bg-transparent duration-150 sm:grow-0 grow">
+            <h3 className="bg-indigo-900/10 py-2 px-4 rounded sm:grow-0 grow text-center">
+              {quantity}
+            </h3>
+            <button
+              className="bg-red-500 text-white w-fit px-3 py-2 rounded border border-transparent hover:border-red-500 hover:text-slate-900 hover:bg-transparent duration-150 sm:grow-0 grow"
+              onClick={() => deleteProduct(asin)}
+            >
               Delete
             </button>
           </div>
