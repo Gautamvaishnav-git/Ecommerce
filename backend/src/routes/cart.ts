@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.post("/add", authentication, handleAddProduct);
 router.get("/fetchcart", authentication, handleFetchCart);
-router.post("/delete", authentication, handleDelete);
+router.delete("/delete/:asin", authentication, handleDelete);
 
 export default router;

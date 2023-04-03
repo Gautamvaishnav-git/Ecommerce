@@ -43,11 +43,11 @@ const handleAddProduct = async (req: Request, resp: Response) => {
 
 const handleDelete = async (req: Request, resp: Response) => {
   const user: user = req.body.user;
-  await cart.deleteOne({
+  const deletedProduct = await cart.deleteOne({
     userID: user.userID,
-    asin: req.body.asin,
+    asin: req.params.asin,
   });
-  return resp.status(200).json({ deleted: true });
+  return resp.status(200).json(deletedProduct);
 };
 
 export { handleAddProduct, handleFetchCart, handleDelete };
