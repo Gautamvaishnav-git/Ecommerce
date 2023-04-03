@@ -84,7 +84,7 @@ export interface IVariants {
 
 export interface IProduct {
   asin: string;
-  price: {
+  price?: {
     discounted: boolean;
     current_price: number;
     currency: string;
@@ -92,7 +92,7 @@ export interface IProduct {
     savings_amount: number;
     savings_percent: number;
   };
-  reviews: {
+  reviews?: {
     total_reviews: number;
     rating: number;
   };
