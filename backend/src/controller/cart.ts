@@ -19,25 +19,30 @@ const handleFetchCart = async (req: Request, resp: Response) => {
 const handleAddProduct = async (req: Request, resp: Response) => {
   const user: user = req.body.user;
   const product = await StoreModel.findOne({ asin: req.body.asin });
-  const { price, asin, title, reviews, main_image } = product;
-  const isExists = await cart.findOne({ userID: user.userID, asin });
-  // console.log(isExists);
-  if (!isExists) {
-    const addProduct = await cart.create({
+  if (product) {
+    const isExists = await cart.findOne({
       userID: user.userID,
-      price,
-      asin,
-      title,
-      reviews,
-      main_image,
+      asin: product.asin,
     });
-    return resp.json({ asin: addProduct.asin, title: addProduct.title });
+    if (!isExists) {
+      const addProduct = await cart.create({
+        userID: user.userID,
+        price: product.price,
+        asin: product.asin,
+        title: product.title,
+        reviews: product.reviews,
+        main_image: product.main_image,
+      });
+      return resp.json({ asin: addProduct.asin, title: addProduct.title });
+    } else {
+      const updated = await cart.findOneAndUpdate(
+        { asin: product.asin, userID: user.userID },
+        { $inc: { quantity: 1 } }
+      );
+      return resp.json({ asin: updated.asin, title: updated.title });
+    }
   } else {
-    const updated = await cart.findOneAndUpdate(
-      { asin, userID: user.userID },
-      { $inc: { quantity: 1 } }
-    );
-    return resp.json({ asin: updated.asin, title: updated.title });
+    return resp.status(404).json({ product: "product not found" });
   }
 };
 

@@ -91,7 +91,7 @@ export interface IProduct {
     before_price: number;
     savings_amount: number;
     savings_percent: number;
-  };
+  } | null;
   reviews?: {
     total_reviews: number;
     rating: number;
