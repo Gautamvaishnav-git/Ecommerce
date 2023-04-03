@@ -10,7 +10,7 @@ const Card = ({ product }: { product: IProduct }) => {
   return (
     <>
       <ToastContainer />
-      <div className="card w-full sm:w-1/4 xl:w-1/5 grow flex gap-2 flex-col items-center bg-white shadow-md rounded-md overflow-hidden relative border-t border-l border-gray-200 hover:scale-[1.02] duration-300 m-3">
+      <div className="card w-full sm:w-1/4 xl:w-1/5 grow-[0.5] flex gap-2 flex-col items-center bg-white shadow-md rounded-md overflow-hidden relative border-t border-l border-gray-200 hover:scale-[1.02] duration-300 m-3">
         <Link
           to={`product/${asin}`}
           className="addToCart rounded-full bg-indigo-900 absolute bottom-4 z-30 right-4 text-white backdrop-blur-sm p-2 cursor-pointer hover:scale-110 duration-200"
