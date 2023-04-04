@@ -8,4 +8,11 @@ const handleSearch = async (req: Request, res: Response) => {
   return res.json(resp);
 };
 
-export default handleSearch;
+const handlePriceRangeFilter = async (req: Request, res: Response) => {
+  const priceFilter = await StoreModel.find({
+    "price.current_price": { $lte: req.query.lte, $gte: req.query.gte },
+  });
+  return res.json(priceFilter);
+};
+
+export { handleSearch, handlePriceRangeFilter };
