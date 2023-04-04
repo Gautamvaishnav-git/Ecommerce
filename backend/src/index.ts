@@ -6,7 +6,7 @@ import express from "express";
 import userRouter from "./routes/user";
 import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
-import searchRouter from "./routes/search";
+import searchRouter from "./routes/filter";
 import { connectToMongoDB } from "./connection";
 import { authentication } from "./middleware/authentication";
 
@@ -24,7 +24,7 @@ app.use(cors());
 app.use("/user", userRouter);
 app.use("/store", storeRouter);
 app.use("/cart", authentication, cartRouter);
-app.use("/search", authentication, searchRouter);
+app.use("/filter", authentication, searchRouter);
 
 app.listen(port, () => {
   console.log(`Express is listening at http://localhost:${port}`);

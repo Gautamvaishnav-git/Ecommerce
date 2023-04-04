@@ -8,11 +8,20 @@ const handleSearch = async (req: Request, res: Response) => {
   return res.json(resp);
 };
 
-const handlePriceRangeFilter = async (req: Request, res: Response) => {
+const handlePriceRange = async (req: Request, res: Response) => {
   const priceFilter = await StoreModel.find({
     "price.current_price": { $lte: req.query.lte, $gte: req.query.gte },
   });
   return res.json(priceFilter);
 };
 
-export { handleSearch, handlePriceRangeFilter };
+const handleReviews = async (req: Request, res: Response) => {
+  const lte = req.query.lte || 5;
+  const gte = req.query.gte || 1;
+  const categoryData = await StoreModel.find({
+    "reviews.rating": { $lte: lte, $gte: gte },
+  });
+  return res.json(categoryData);
+};
+
+export { handleSearch, handlePriceRange, handleReviews };
