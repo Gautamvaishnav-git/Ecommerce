@@ -1,12 +1,13 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
 
 import express from "express";
 import userRouter from "./routes/user";
 import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
+import searchRouter from "./routes/search";
 import { connectToMongoDB } from "./connection";
-import cors from "cors";
 import { authentication } from "./middleware/authentication";
 
 const ecommerceURL = "mongodb://127.0.0.1:27017/Ecommerce";
@@ -23,7 +24,8 @@ app.use(cors());
 app.use("/user", userRouter);
 app.use("/store", storeRouter);
 app.use("/cart", authentication, cartRouter);
+app.use("/search", authentication, searchRouter);
 
 app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+  console.log(`Express is listening at http://localhost:${port}`);
 });

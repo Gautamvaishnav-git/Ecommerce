@@ -42,7 +42,7 @@ const handleAddProduct = async (req: Request, resp: Response) => {
       return resp.json({ asin: updated.asin, title: updated.title });
     }
   } else {
-    return resp.status(404).json({ product: "product not found" });
+    return resp.status(404).json({ product: "product not available" });
   }
 };
 
