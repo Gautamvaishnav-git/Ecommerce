@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import PrivateComponent from "./components/PrivateComponent";
 import Product from "./pages/Product";
 import "react-toastify/dist/ReactToastify.css";
+import Search from "./pages/Search";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:asin" element={<Product />} />
+          <Route path="/search/:query" element={<Search />} />
         </Route>
         <Route path="/user">
           <Route path="signup" element={<SignUp />} />
