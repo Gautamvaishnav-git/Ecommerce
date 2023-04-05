@@ -3,6 +3,7 @@ import useDelete from "../hooks/useDelete";
 import useFetch from "../hooks/useFetch";
 import IProduct from "../interfaces/product";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 export interface cartProductType extends IProduct {
   quantity: number;
@@ -19,7 +20,12 @@ const Cart = () => {
     url: `${baseURI}/cart/delete`,
   });
   const deleteProduct = (asin: string) => {
-    deleteOnAction(asin);
+    deleteOnAction(
+      asin,
+      "Deleted",
+      "deleting product...",
+      "not deleted, error!"
+    );
     setFetchURI(`${baseURI}/cart/fetchcart/`);
   };
 
@@ -38,6 +44,7 @@ const Cart = () => {
   return (
     <>
       <div className="container mx-auto sm:py-8">
+        <ToastContainer />
         {response?.length === 0 && (
           <div className="text-2xl text-indigo-500 text-center font-semibold">
             There is no item in your cart !
