@@ -1,27 +1,36 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const usePost = <T,>({ url, data }: { url: string; data: object }) => {
   const [response, setResponse] = useState<T>();
-  const [posting, setPosting] = useState<boolean>(false);
   const [postErr, setPostErr] = useState<boolean>(false);
-  const postOnAction = async () => {
+  const postOnAction = async (
+    success: string,
+    err: string,
+    loading: string
+  ) => {
     try {
-      setPosting(true);
-      const { data: res } = await axios.post(
-        url,
-        { ...data },
-        { headers: { Authorization: sessionStorage.getItem("token") } }
+      const { data: res } = await toast.promise(
+        axios.post(
+          url,
+          { ...data },
+          { headers: { Authorization: sessionStorage.getItem("token") } }
+        ),
+        {
+          success,
+          error: err,
+          pending: loading,
+        }
       );
       setResponse(await res);
-      setPosting(false);
     } catch (error) {
+      toast.error(err);
       setPostErr(true);
-      setPosting(false);
     }
   };
 
-  return { response, postOnAction, postErr, posting };
+  return { response, postOnAction, postErr };
 };
 
 export default usePost;
