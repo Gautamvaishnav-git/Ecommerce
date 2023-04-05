@@ -20,8 +20,14 @@ const Home = () => {
       <div className="flex flex-wrap px-2 py-4 w-full container mx-auto">
         <ToastContainer />
         {response &&
-          response.map((product) => {
-            return <Card product={product} key={product.asin} grow={0.5} />;
+          response.map((product, index) => {
+            return (
+              <Card
+                product={product}
+                key={product.asin}
+                grow={index + 1 === response.length ? 0.1 : 0.5}
+              />
+            );
           })}
       </div>
     </>
