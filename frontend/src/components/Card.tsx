@@ -16,7 +16,7 @@ const Card = ({ product, grow }: { product: IProduct; grow: number }) => {
       >
         <Link
           to={`/product/${asin}`}
-          className="addToCart rounded-full bg-indigo-900 absolute bottom-4 z-30 right-4 text-white backdrop-blur-sm p-2 cursor-pointer hover:scale-110 duration-200"
+          className="addToCart rounded-full bg-indigo-500 absolute bottom-4 z-30 right-4 text-white backdrop-blur-sm p-2 cursor-pointer hover:scale-110 duration-200"
           title="add To cart"
         >
           <AiOutlineEye />
@@ -58,7 +58,7 @@ const Card = ({ product, grow }: { product: IProduct; grow: number }) => {
             <p className="font-medium">
               <span className="text-indigo-600">Save: </span>
               <span className="">${price.savings_amount}</span>
-              <span className="text-green-600 pl-2">
+              <span className="text-indigo-600 pl-2">
                 [{price.savings_percent}%]
               </span>
             </p>
