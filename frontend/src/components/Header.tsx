@@ -1,12 +1,20 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { AiFillHome, AiOutlineShoppingCart } from "react-icons/ai";
 
-const Header = () => {
+const Header: React.FC = () => {
   const navigate = useNavigate();
+  const [query, setQuery] = useState<string>("");
   const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    navigate("/user/login");
+    const exit = confirm("Are you sure that you want to log out");
+    if (exit) {
+      sessionStorage.removeItem("token");
+      navigate("/user/login");
+    }
+  };
+  const handleSearch = async (e: React.SyntheticEvent<EventTarget>) => {
+    e.preventDefault();
+    navigate(`/search/${query}`);
   };
   return (
     <>
@@ -33,6 +41,24 @@ const Header = () => {
             </svg>
             <span className="ml-3 text-xl">Free Zone</span>
           </Link>
+          <form
+            onSubmit={handleSearch}
+            className="grow flex items-center gap-2 justify-center"
+          >
+            <input
+              type="text"
+              placeholder="search"
+              className="outline-none border bottom-1 border-gray-300 focus:border-indigo-500 rounded-sm focus:scale-x-110 duration-150 py-1 px-2"
+              required
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button
+              className="bg-indigo-500 border border-transparent hover:border-indigo-500 hover:bg-transparent hover:text-indigo-500 duration-150 rounded text-white px-2 py-1"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
           <nav
             className="md:ml-auto flex flex-wrap items-center text-base justify-center"
             id="navBar"

@@ -21,12 +21,7 @@ const Home = () => {
         <ToastContainer />
         {response &&
           response.map((product) => {
-            return (
-              <Card
-                product={product}
-                key={product.asin}
-              />
-            );
+            return <Card product={product} key={product.asin} grow={0.5} />;
           })}
       </div>
     </>

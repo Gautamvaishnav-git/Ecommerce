@@ -39,7 +39,7 @@ const Cart = () => {
     <>
       <div className="container mx-auto sm:py-8">
         {response?.length === 0 && (
-          <div className="text-2xl text-indigo-500 font-semibold">
+          <div className="text-2xl text-indigo-500 text-center font-semibold">
             There is no item in your cart !
           </div>
         )}
