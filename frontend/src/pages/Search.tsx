@@ -14,16 +14,17 @@ const Search: React.FC = () => {
   });
   useEffect(() => {
     setSearchList(response);
-  }, [response]);
+  }, [response, params]);
 
   if (fetchErr) return <p>Fetch Error occur</p>;
 
   return (
     <>
       {loading && <Loader message="searching..." />}
-      <div className="container mx-auto flex w-full flex-wrap">
+      {searchList?.length === 0 && <div>No Item Found!!</div>}
+      <div className="container mx-auto flex w-full justify-center flex-wrap">
         {searchList?.map((list) => (
-          <Card product={list} key={list.asin} grow={0} />
+          <Card product={list} key={list.asin} grow={0.2} />
         ))}
       </div>
     </>
