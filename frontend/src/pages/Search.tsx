@@ -21,7 +21,7 @@ const Search: React.FC = () => {
   return (
     <>
       {loading && <Loader message="searching..." />}
-      {searchList?.length === 0 && <div>No Item Found!!</div>}
+      {searchList?.length === 0 && <div className="container mx-auto text-center text-2xl text-indigo-500">No Item Found!!</div>}
       <div className="container mx-auto flex w-full justify-center flex-wrap">
         {searchList?.map((list) => (
           <Card product={list} key={list.asin} grow={0.2} />

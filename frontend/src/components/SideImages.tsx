@@ -15,7 +15,7 @@ const SideImages = (props: Detail) => {
             return (
               <div
                 key={index}
-                className="w-ull border p-2 cursor-pointer border-gray-300 hover:border-indigo-600"
+                className="w-ull border p-2 cursor-pointer border-gray-300 hover:border-indigo-600 dark:border-gray-500"
                 onClick={() => setProductImage(image)}
               >
                 <img

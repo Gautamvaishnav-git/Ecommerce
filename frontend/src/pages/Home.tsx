@@ -1,9 +1,9 @@
 import Card from "../components/Card";
 import useFetch from "../hooks/useFetch";
 import IProduct from "../interfaces/product";
-import Loader from "../components/Loader";
 import CardLoadingSkelton from "../components/CardLoadingSkelton";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { FaFilter } from "react-icons/fa";
 
 const Home = () => {
   const baseUri = import.meta.env.VITE_API_BASE_URI;

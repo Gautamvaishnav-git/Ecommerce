@@ -21,11 +21,11 @@ const Header: React.FC = () => {
       <header className="sm:hidden sticky top-0 z-[9999]">
         <MobileMenu />
       </header>
-      <header className="hidden sm:block text-gray-600 body-font">
+      <header className="hidden sm:block text-gray-600 dark:text-gray-300 body-font">
         <div className="container mx-auto flex flex-wrap p-5 justify-between items-center">
           <Link
             to="/"
-            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+            className="flex title-font font-medium items-center text-gray-900 dark:text-white mb-4 md:mb-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
             <input
               type="text"
               placeholder="search"
-              className="outline-none border bottom-1 border-gray-300 focus:border-indigo-500 rounded-sm focus:scale-x-110 duration-150 py-1 px-2"
+              className="outline-none border bottom-1 border-gray-300 dark:border-gray-800 dark:bg-gray-700 focus:border-indigo-500 rounded-sm focus:scale-x-110 duration-150 py-1 px-2"
               required
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -63,10 +63,10 @@ const Header: React.FC = () => {
             className="md:ml-auto flex flex-wrap items-center text-base justify-center"
             id="navBar"
           >
-            <NavLink to="/" className="mr-5 hover:text-gray-900">
+            <NavLink to="/" className="mr-5 hover:text-gray-900 dark:hover:text-white duration-200">
               Home
             </NavLink>
-            <NavLink to="/cart" className="mr-5 hover:text-gray-900">
+            <NavLink to="/cart" className="mr-5 hover:text-gray-900 dark:hover:text-white duration-200">
               Cart
             </NavLink>
           </nav>
@@ -97,7 +97,7 @@ const Header: React.FC = () => {
 export const MobileMenu: React.FC = () => {
   return (
     <>
-      <nav className="flex justify-between px-3 pt-2 bg-white/60 backdrop-blur-sm">
+      <nav className="flex justify-between px-3 pt-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm">
         <Link
           to="/"
           className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"

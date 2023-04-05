@@ -24,7 +24,11 @@ const Product: React.FC = () => {
     data: { asin: params.asin },
   });
   const addToCart = async () => {
-    postOnAction("Added to cart", "not added, got some err", "adding to your cart...");
+    postOnAction(
+      "Added to cart",
+      "not added, got some err",
+      "adding to your cart..."
+    );
   };
 
   if (fetchErr)

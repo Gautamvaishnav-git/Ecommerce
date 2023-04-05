@@ -7,6 +7,10 @@
     animation: rotateLoader 2s linear infinite;
   }
 
+  body{
+    @apply dark:bg-slate-900
+  }
+
   @keyframes rotateLoader {
     from {
       rotate: 0deg;
