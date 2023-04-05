@@ -24,17 +24,7 @@ const Product: React.FC = () => {
     data: { asin: params.asin },
   });
   const addToCart = async () => {
-    try {
-      postOnAction();
-      postResponse &&
-        toast.promise(postOnAction, {
-          success: `Added ${(await postResponse).title.slice(0, 15)}...`,
-          error: "Error occurred!",
-          pending: "adding...",
-        });
-    } catch (error) {
-      toast.error("Error occurred");
-    }
+    postOnAction("Added to cart", "not added, got some err", "adding to your cart...");
   };
 
   if (fetchErr)
