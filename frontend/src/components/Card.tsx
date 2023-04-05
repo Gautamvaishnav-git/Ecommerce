@@ -4,21 +4,24 @@ import { Rating } from "react-simple-star-rating";
 import { AiOutlineEye } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 
-const Card = ({ product }: { product: IProduct }) => {
+const Card = ({ product, grow }: { product: IProduct; grow: number }) => {
   const { title, asin, price, main_image, reviews } = product;
 
   return (
     <>
       <ToastContainer />
-      <div className="card w-full sm:w-1/4 xl:w-1/5 grow-[0.5] flex gap-2 flex-col items-center bg-white shadow-md rounded-md overflow-hidden relative border-t border-l border-gray-200 hover:scale-[1.02] duration-300 m-3">
+      <div
+        className="card w-full sm:w-1/4 xl:w-1/5 flex gap-2 flex-col items-center bg-white shadow-md rounded-md overflow-hidden relative border-t border-l border-gray-200 hover:scale-[1.02] duration-300 m-3"
+        style={{ flexGrow: grow }}
+      >
         <Link
-          to={`product/${asin}`}
+          to={`/product/${asin}`}
           className="addToCart rounded-full bg-indigo-900 absolute bottom-4 z-30 right-4 text-white backdrop-blur-sm p-2 cursor-pointer hover:scale-110 duration-200"
           title="add To cart"
         >
           <AiOutlineEye />
         </Link>
-        <Link to={`product/${asin}`} className="w-full">
+        <Link to={`/product/${asin}`} className="w-full">
           <div className="w-full relative">
             <img
               src={main_image}
