@@ -1,4 +1,5 @@
 import CartProduct from "../components/CartProduct";
+import Loader from "../components/Loader";
 import useDelete from "../hooks/useDelete";
 import useFetch from "../hooks/useFetch";
 import IProduct from "../interfaces/product";
@@ -12,7 +13,9 @@ export interface cartProductType extends IProduct {
 const Cart = () => {
   const baseURI = import.meta.env.VITE_API_BASE_URI;
   const [fetchURI, setFetchURI] = useState(`${baseURI}/cart/fetchcart`);
-  const { response, fetchErr } = useFetch<cartProductType[]>({
+  const { response, fetchErr, loading, FetchOnAction } = useFetch<
+    cartProductType[]
+  >({
     url: fetchURI,
   });
 
@@ -31,7 +34,8 @@ const Cart = () => {
 
   useEffect(() => {
     setFetchURI(`${baseURI}/cart/fetchcart`);
-  }, [deleteResponse]);
+    FetchOnAction();
+  }, [deleteResponse, response]);
 
   if (fetchErr) {
     return (
@@ -44,6 +48,7 @@ const Cart = () => {
   return (
     <>
       <div className="container mx-auto sm:py-8">
+        {loading && <Loader message="fetching cart" />}
         <ToastContainer />
         {response?.length === 0 && (
           <div className="text-2xl text-indigo-500 text-center font-semibold">
