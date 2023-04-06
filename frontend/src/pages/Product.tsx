@@ -5,16 +5,18 @@ import ProductDetail from "../interfaces/ProductDetail";
 import Detail from "../components/Detail";
 import Loader from "../components/Loader";
 import usePost from "../hooks/usePost";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 const Product: React.FC = () => {
   const params = useParams();
   const baseUri = import.meta.env.VITE_API_BASE_URI;
-  const { response, fetchErr, loading } = useFetch<ProductDetail>({
-    url: `${baseUri}/store/detail`,
-    params: { asin: params.asin },
-  });
-  const { response: postResponse, postOnAction } = usePost<
+  const { response, fetchErr, loading, FetchOnAction } =
+    useFetch<ProductDetail>({
+      url: `${baseUri}/store/detail`,
+      params: { asin: params.asin },
+    });
+  const { postOnAction } = usePost<
     Promise<{
       title: string;
       asin: string;
@@ -30,6 +32,10 @@ const Product: React.FC = () => {
       "adding to your cart..."
     );
   };
+
+  useEffect(() => {
+    FetchOnAction();
+  }, [response]);
 
   if (fetchErr)
     return (
