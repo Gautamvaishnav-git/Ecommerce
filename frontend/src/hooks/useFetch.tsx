@@ -21,10 +21,15 @@ const useFetch = <T,>({ url, params }: { url: string; params?: object }) => {
       setFetchErr(true);
     }
   }, [response]);
-  useEffect(() => {
-    fetchData();
-  }, [url]);
 
-  return { response, loading, fetchErr };
+  const FetchOnAction = () => {
+    fetchData();
+  };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, [url]);
+
+  return { response, loading, fetchErr, FetchOnAction };
 };
 export default useFetch;
