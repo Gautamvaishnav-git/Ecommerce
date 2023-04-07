@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "./.env" });
 import cors from "cors";
 
 import express from "express";
@@ -9,12 +9,6 @@ import cartRouter from "./routes/cart";
 import searchRouter from "./routes/filter";
 import { connectToMongoDB } from "./connection";
 import { authentication } from "./middleware/authentication";
-
-const ecommerceURL = "mongodb://127.0.0.1:27017/Ecommerce";
-
-connectToMongoDB(ecommerceURL)
-  .then(() => console.log("mongodb is running on DB", ecommerceURL))
-  .catch((err) => console.log("mongo err", err));
 
 const app = express();
 const port = 5000 || process.env.PORT;
@@ -27,5 +21,12 @@ app.use("/cart", authentication, cartRouter);
 app.use("/filter", authentication, searchRouter);
 
 app.listen(port, () => {
-  console.log(`Express is listening at http://localhost:${port}`);
+  try {
+    console.log(`Express is listening at http://localhost:${port}`);
+    connectToMongoDB()
+      .then(() => console.log("mongodb is running"))
+      .catch((err) => console.error("mongo err", err.message));
+  } catch (error) {
+    console.error(error.message);
+  }
 });

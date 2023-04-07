@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const connectToMongoDB = (url: string) => {
-  return mongoose.connect(url);
+const connectToMongoDB = () => {
+  return mongoose.connect(process.env.MONGO_URI);
 };
 
 export { connectToMongoDB };
