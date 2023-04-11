@@ -5,9 +5,9 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
   const [maxValue, setMaxValue] = useState("0");
   const [minValue, setMinValue] = useState("0");
   const navigate = useNavigate();
-  const [query, setQuery] = useState("/");
+  const [query, setQuery] = useState("");
   const filterByPriceRange = () => {
-    setQuery(`/filter/?gte=${minValue}&lte=${maxValue}`);
+    setQuery(`/filter/gte=${minValue}&lte=${maxValue}&&price`);
     navigate(query);
   };
 
@@ -54,7 +54,7 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
             </div>
             <button
               type="submit"
-              className="bg-indigo-500 text-white font-sans dark:bg-indigo-600 py-1 px-4 rounded hover:bg-indigo-700"
+              className="bg-indigo-500 text-white font-sans dark:bg-indigo-600 py-1 px-4 rounded hover:bg-indigo-700 disabled:bg-red-500"
               onClick={filterByPriceRange}
             >
               Search
