@@ -1,8 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Filters = ({ isVisible }: { isVisible: boolean }) => {
   const [maxValue, setMaxValue] = useState("0");
   const [minValue, setMinValue] = useState("0");
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("/");
+  const filterByPriceRange = () => {
+    setQuery(`/filter/?gte=${minValue}&lte=${maxValue}`);
+    navigate(query);
+  };
+
   return (
     <>
       {isVisible && (
@@ -28,8 +36,10 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
             </div>
             <div className="w-1/2 flex flex-col gap-2">
               <label htmlFor="maxRange">
-                Maximum Price{" "}
-                <span className="pl-2 text-green-500">${maxValue}</span>
+                Maximum Price
+                <span className="pl-2 text-green-500 dark:text-green-400">
+                  ${maxValue}
+                </span>
               </label>
               <input
                 type="range"
@@ -45,6 +55,7 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
             <button
               type="submit"
               className="bg-indigo-500 text-white font-sans dark:bg-indigo-600 py-1 px-4 rounded hover:bg-indigo-700"
+              onClick={filterByPriceRange}
             >
               Search
             </button>

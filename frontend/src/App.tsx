@@ -8,6 +8,7 @@ import PrivateComponent from "./components/PrivateComponent";
 import Product from "./pages/Product";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "./pages/Search";
+import Filter from "./pages/Filter";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:asin" element={<Product />} />
           <Route path="/search/:query" element={<Search />} />
+          <Route path="/filter/:query" element={<Filter />} />
         </Route>
         <Route path="/user">
           <Route path="signup" element={<SignUp />} />
