@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState<boolean>(false);
   const [formData, updateFormData] = useReducer(
     (prev: IForm, next: IForm) => {
       return { ...prev, ...next };
@@ -18,12 +17,17 @@ const Login = () => {
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     try {
-      setLoading(true);
       let baseUri = import.meta.env.VITE_API_BASE_URI;
-      const { data } = await axios.post(`${baseUri}/user/login`, {
-        ...formData,
-      });
-      setLoading(false);
+      const { data } = await toast.promise(
+        axios.post(`${baseUri}/user/login`, {
+          ...formData,
+        }),
+        {
+          success: "You are logged in",
+          error: "some error found!",
+          pending: "Logging you",
+        }
+      );
       if (data.token) {
         sessionStorage.setItem("token", data.token);
         updateFormData({ email: "", password: "" });
@@ -33,7 +37,6 @@ const Login = () => {
         navigate("/user/login");
       }
     } catch (error) {
-      setLoading(false);
       toast.error("server not respond!");
     }
   };
@@ -89,7 +92,7 @@ const Login = () => {
             className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             type="submit"
           >
-            {loading ? "Logging..." : "Login"}
+            Login
           </button>
           <p className="text-sm text-gray-500 mt-3">
             Already have an account
