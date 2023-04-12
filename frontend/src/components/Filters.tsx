@@ -15,8 +15,8 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
     <>
       {isVisible && (
         <div className="bg-gray-200 dark:bg-gray-800 p-3 my-4 rounded-md">
-          <div className="flex justify-between">
-            <div className="w-1/2 flex flex-col gap-2">
+          <div className="flex justify-between sm:flex-row flex-col">
+            <div className="sm:w-1/2  flex flex-col gap-2 sm:pb-0 pb-4">
               <label htmlFor="minRange">
                 Minium Price
                 <span className="pl-2 text-green-500 dark:text-green-400">
@@ -25,7 +25,7 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
               </label>
               <input
                 type="range"
-                className=" h-1 w-1/2 cursor-pointer appearance-none rounded-lg border-transparent bg-indigo-500"
+                className=" h-1 sm:w-1/2 cursor-pointer appearance-none rounded-lg border-transparent bg-indigo-500"
                 id="minRange"
                 max={500}
                 min={0}
@@ -34,7 +34,7 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
                 onChange={(e) => setMinValue(e.target.value)}
               />
             </div>
-            <div className="w-1/2 flex flex-col gap-2">
+            <div className="sm:w-1/2 flex flex-col gap-2 sm:pb-0 pb-4">
               <label htmlFor="maxRange">
                 Maximum Price
                 <span className="pl-2 text-green-500 dark:text-green-400">
@@ -43,7 +43,7 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
               </label>
               <input
                 type="range"
-                className=" h-1 w-1/2 cursor-pointer appearance-none rounded-lg border-transparent bg-indigo-500"
+                className=" h-1 sm:w-1/2 cursor-pointer appearance-none rounded-lg border-transparent bg-indigo-500"
                 id="maxRange"
                 max={500}
                 min={0}
@@ -53,7 +53,6 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
               />
             </div>
             <button
-              type="submit"
               className="bg-indigo-500 text-white font-sans dark:bg-indigo-600 py-1 px-4 rounded hover:bg-indigo-700 disabled:bg-red-500"
               onClick={filterByPriceRange}
             >
