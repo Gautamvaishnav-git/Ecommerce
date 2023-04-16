@@ -5,6 +5,13 @@ import { AiFillCheckCircle } from "react-icons/ai";
 const ProductInfo = (props: ProductInfoType) => {
   const { title, description, reviews, price, categories, feature_bullets } =
     props;
+  const handleExpandDesc = (e: React.SyntheticEvent<EventTarget>) => {
+    const target = e.target as HTMLParagraphElement;
+    target.innerText = description;
+    target.classList.add("before:hidden");
+    target.classList.add("dark:before:hidden");
+    target.style.cursor = "text";
+  };
   return (
     <>
       <div className="w-full">
@@ -12,12 +19,8 @@ const ProductInfo = (props: ProductInfoType) => {
           {title}
         </h2>
         <p
-          className="cursor-pointer relative before:absolute before:w-full before:h-full before:bg-gradient-to-t before:from-white dark:before:from-slate-900 dark:text-gray-400"
-          onClick={(e) => {
-            const target = e.target as HTMLParagraphElement;
-            target.innerText = description;
-            target.classList.remove("before:from-white");
-          }}
+          className="relative before:absolute before:w-full before:h-full before:bg-gradient-to-t before:from-white dark:before:from-slate-900 dark:text-gray-400 before:cursor-pointer"
+          onClick={handleExpandDesc}
         >
           {description.slice(0, 150)}...
         </p>
