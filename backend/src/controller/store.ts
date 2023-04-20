@@ -16,19 +16,3 @@ const handleProductDetail = async (req: Request, resp: Response) => {
 };
 
 export { handleProducts, handleProductDetail };
-
-/*
-    // const data = await fetch(
-    //   `https://amazon23.p.rapidapi.com/product-details?asin=${req.query.asin}`,
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-    //       "X-RapidAPI-Host": "amazon23.p.rapidapi.com",
-    //     },
-    //   }
-    // );
-    // const detail = await data.json();
-    //  await DetailModel.create(detail.result[0]);
-    // return resp.json(data);
-     */
