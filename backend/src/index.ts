@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
+dotenv.config();
 import cors from "cors";
 
 import express from "express";
@@ -7,6 +7,7 @@ import userRouter from "./routes/user";
 import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
 import searchRouter from "./routes/filter";
+import checkoutRouter from "./routes/checkout";
 import { connectToMongoDB } from "./connection";
 import { authentication } from "./middleware/authentication";
 
@@ -19,6 +20,7 @@ app.use("/user", userRouter);
 app.use("/store", storeRouter);
 app.use("/cart", authentication, cartRouter);
 app.use("/filter", authentication, searchRouter);
+app.use("/checkout", authentication, checkoutRouter);
 
 app.listen(port, () => {
   try {
