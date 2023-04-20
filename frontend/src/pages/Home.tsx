@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { FaFilter } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import Filters from "../components/Filters";
+import ServerErr from "../components/ServerErr";
 
 const Home = () => {
   const baseUri = import.meta.env.VITE_API_BASE_URI;
@@ -19,7 +20,7 @@ const Home = () => {
     FetchOnAction();
   }, [response]);
 
-  if (fetchErr) return <p>Fetch Error occur</p>;
+  if (fetchErr) return <ServerErr />;
 
   return (
     <>

@@ -26,7 +26,7 @@ const Filter = () => {
 
   return (
     <>
-      <div className="flex container flex-wrap py-8">
+      <div className="flex container mx-auto flex-wrap py-8">
         {products &&
           products.map((product, index) => (
             <Card
