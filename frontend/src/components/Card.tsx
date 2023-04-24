@@ -2,7 +2,7 @@ import IProduct from "../interfaces/product";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { AiOutlineEye } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const Card = ({ product, grow }: { product: IProduct; grow: number }) => {
   const { title, asin, price, main_image, reviews } = product;
@@ -51,12 +51,16 @@ const Card = ({ product, grow }: { product: IProduct; grow: number }) => {
           </div>
           <div className="w-full">
             <p className="text-slate-800 dark:text-slate-400">
-              <span className="text-indigo-600 dark:text-indigo-400">Price: </span>
+              <span className="text-indigo-600 dark:text-indigo-400">
+                Price:{" "}
+              </span>
               <span>${price.current_price}</span>
               <span className="line-through pl-1">${price.before_price}</span>
             </p>
             <p className="text-slate-800 dark:text-slate-400">
-              <span className="text-indigo-600 dark:text-indigo-400">Save: </span>
+              <span className="text-indigo-600 dark:text-indigo-400">
+                Save:{" "}
+              </span>
               <span className="">${price.savings_amount}</span>
               <span className="text-indigo-600 dark:text-indigo-400 pl-2">
                 [{price.savings_percent}%]
