@@ -17,9 +17,16 @@ const SignUp = () => {
   const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     let baseUri: string = import.meta.env.VITE_API_BASE_URI;
-    const { data } = await axios.post(`${baseUri}/user/signup`, {
-      ...formData,
-    });
+    const { data } = await toast.promise(
+      axios.post(`${baseUri}/user/signup`, {
+        ...formData,
+      }),
+      {
+        success: "sent data!",
+        pending: "sending you details...",
+        error: "an error occurred!",
+      }
+    );
     if (data.token) {
       sessionStorage.setItem("token", data.token);
       updateFormData({ name: "", email: "", password: "" });
