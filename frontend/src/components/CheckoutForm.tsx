@@ -3,6 +3,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import usePost from "../hooks/usePost";
 import ServerErr from "./ServerErr";
 import { ToastContainer } from "react-toastify";
+import { motion } from "framer-motion";
 
 interface formData {
   street: string;
@@ -39,7 +40,12 @@ const CheckoutForm = (props: PropTypes) => {
 
   if (postErr) return <ServerErr />;
   return (
-    <div>
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      exit={{ scale: 0 }}
+    >
       <ToastContainer />
       <div className="py-2">Back</div>
       <div className="flex items-center justify-center p-12 fixed top-0 h-screen w-full mx-auto bg-slate-900 z-10 left-0">
@@ -150,7 +156,7 @@ const CheckoutForm = (props: PropTypes) => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

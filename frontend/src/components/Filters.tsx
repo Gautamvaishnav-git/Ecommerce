@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Filters = ({ isVisible }: { isVisible: boolean }) => {
   const [maxValue, setMaxValue] = useState("0");
@@ -14,7 +15,12 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
   return (
     <>
       {isVisible && (
-        <div className="bg-gray-200 dark:bg-gray-800 p-3 my-4 rounded-md">
+        <motion.div
+          initial={{ opacity: 0, y: -10}}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ ease: "easeIn" }}
+          className="bg-gray-200 dark:bg-gray-800 p-3 my-4 rounded-md"
+        >
           <div className="flex justify-between sm:flex-row flex-col">
             <div className="sm:w-1/2  flex flex-col gap-2 sm:pb-0 pb-4">
               <label htmlFor="minRange">
@@ -59,7 +65,7 @@ const Filters = ({ isVisible }: { isVisible: boolean }) => {
               Search
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );
