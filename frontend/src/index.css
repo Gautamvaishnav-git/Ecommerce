@@ -7,8 +7,16 @@
     animation: rotateLoader 2s linear infinite;
   }
 
-  body{
-    @apply dark:bg-slate-900
+  button:focus {
+    @apply outline-indigo-500;
+  }
+
+  button:focus-within {
+    @apply outline-none;
+  }
+
+  body {
+    @apply dark:bg-slate-900;
   }
 
   @keyframes rotateLoader {
