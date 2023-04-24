@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+
 dotenv.config();
 import cors from "cors";
 
@@ -8,8 +9,8 @@ import storeRouter from "./routes/store";
 import cartRouter from "./routes/cart";
 import searchRouter from "./routes/filter";
 import checkoutRouter from "./routes/checkout";
-import { connectToMongoDB } from "./connection";
-import { authentication } from "./middleware/authentication";
+import {connectToMongoDB} from "./connection";
+import {authentication} from "./middleware/authentication";
 
 const app = express();
 const port = 5000 || process.env.PORT;
@@ -23,12 +24,12 @@ app.use("/filter", authentication, searchRouter);
 app.use("/checkout", authentication, checkoutRouter);
 
 app.listen(port, () => {
-  try {
-    console.log(`Express is listening at http://localhost:${port}`);
-    connectToMongoDB()
-      .then(() => console.log("mongodb is running"))
-      .catch((err) => console.error("mongo err", err.message));
-  } catch (error) {
-    console.error(error.message);
-  }
+    try {
+        console.log(`Express is listening at http://localhost:${port}`);
+        connectToMongoDB()
+            .then(() => console.log("mongodb is running"))
+            .catch((err) => console.error("mongo err", err.message));
+    } catch (error) {
+        console.error(error.message);
+    }
 });

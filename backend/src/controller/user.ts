@@ -35,7 +35,7 @@ const handleUserLogin = async (req: Request, resp: Response) => {
       });
       return resp.json({ token });
     } else {
-      return resp.json({ invalid: "incorrect username or password" });
+      return resp.json({ invalid: "incorrect email or password" });
     }
   } catch (error) {
     return resp.status(500).json({ error: error.message });
