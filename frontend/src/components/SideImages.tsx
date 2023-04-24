@@ -1,5 +1,6 @@
 import { useState, SyntheticEvent } from "react";
 import Detail from "../interfaces/ProductDetail";
+
 const SideImages = (props: Detail) => {
   const { main_image, images, variants } = props;
   const [productImage, setProductImage] = useState(main_image);
@@ -18,11 +19,7 @@ const SideImages = (props: Detail) => {
                 className="w-ull border p-2 cursor-pointer border-gray-300 hover:border-indigo-600 dark:border-gray-500"
                 onClick={() => setProductImage(image)}
               >
-                <img
-                  src={image}
-                  alt="image"
-                  className="sm:h-12 h-8 mx-auto"
-                />
+                <img src={image} alt="image" className="sm:h-12 h-8 mx-auto" />
               </div>
             );
           })}

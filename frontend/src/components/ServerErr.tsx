@@ -2,7 +2,7 @@ import React from "react";
 
 const ServerErr = () => {
   return (
-    <div className="container mx-auto pt-4 flex flex-col gap-6">
+    <div className="container mx-auto pt-8 flex flex-col gap-6">
       <p className="text-white text-3xl font-bold text-center">
         Fetch Error occur :(
       </p>

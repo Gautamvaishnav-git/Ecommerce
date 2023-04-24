@@ -58,7 +58,7 @@ const Cart = () => {
   return (
     <>
       {loading && <Loader message="fetching cart" />}
-      <div className="container mx-auto sm:py-8">
+      <div className="container mx-auto sm:py-8 overflow-hidden">
         <ToastContainer />
         {response?.length === 0 ? (
           <div className="text-2xl text-indigo-500 text-center font-semibold">
@@ -84,11 +84,12 @@ const Cart = () => {
             )}
           </>
         )}
-        {response?.map((item) => {
+        {response?.map((item, index) => {
           return (
             <CartProduct
               {...item}
               key={item.asin}
+              index={index}
               deleteProduct={deleteProduct}
             />
           );
